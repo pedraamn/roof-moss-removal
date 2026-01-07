@@ -977,6 +977,7 @@ def main() -> None:
     write_text(out / "index.html", homepage_html())
     write_text(out / "cost" / "index.html", cost_page_html())
     write_text(out / "how-to" / "index.html", howto_page_html())
+    write_text(out / "contact" / "index.html", contact_page_html())
 
     # City pages
     for city, state, col in CITIES:
