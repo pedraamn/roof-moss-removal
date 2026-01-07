@@ -450,8 +450,9 @@ footer{
 .footer-links a{color:var(--muted); text-decoration:none; font-size:13px; padding:6px 0}
 .small{color:var(--muted); font-size:12px; margin-top:8px}
 
+
 /* -----------------------
-   CONTACT PAGE (matches site theme)
+   CONTACT (Networx embed)
 ----------------------- */
 .form-grid{
   margin-top:14px;
@@ -464,69 +465,28 @@ footer{
   .form-grid{grid-template-columns:1fr}
 }
 
-.form-card{
+.embed-card{
   border:1px solid var(--line);
   border-radius:14px;
   padding:14px;
   background:var(--soft);
 }
 
-.form{
-  display:grid;
-  gap:12px;
-}
-.field label{
-  display:block;
-  font-size:13px;
-  font-weight:800;
-  color:var(--ink);
-  margin:0 0 6px;
-}
-.req{color:#ef4444; margin-left:3px}
-.input, .textarea{
-  width:100%;
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:10px 12px;
-  font:inherit;
-  background:#fff;
-}
-.textarea{min-height:110px; resize:vertical}
-.input:focus, .textarea:focus{
-  outline:2px solid rgba(22,163,74,0.35);
-  outline-offset:2px;
+.nx-center{
+  display:flex;
+  justify-content:center;
 }
 
-.row-2{
-  display:grid;
-  gap:12px;
-  grid-template-columns: 1fr 1fr;
-}
-@media (max-width: 540px){
-  .row-2{grid-template-columns:1fr}
+#nx_form{
+  max-width:100%;
 }
 
-.btn-orange{
-  display:inline-block;
-  width:100%;
-  padding:11px 12px;
-  border-radius:12px;
-  border:1px solid rgba(0,0,0,0.04);
-  font-weight:900;
-  font-size:13px;
-  cursor:pointer;
-  background:#d97706;
-  color:#fff;
-  box-shadow:0 8px 18px rgba(217,119,6,0.18);
-}
-.btn-orange:hover{background:#b45309}
-.btn-orange:focus{outline:2px solid #b45309; outline-offset:2px}
-
-.privacy{
-  margin-top:10px;
-  text-align:center;
-  color:var(--muted);
-  font-size:12px;
+/* Slight scale-down for small phones */
+@media (max-width: 420px){
+  #nx_form{
+    transform: scale(0.92);
+    transform-origin: top center;
+  }
 }
 
 .why-box{
@@ -567,7 +527,14 @@ footer{
   flex:0 0 auto;
   margin-top:1px;
 }
-.tick:before{content:"✓"; font-weight:900; color:var(--ink); font-size:12px; line-height:1}
+.tick:before{
+  content:"✓";
+  font-weight:900;
+  color:var(--ink);
+  font-size:12px;
+  line-height:1;
+}
+
 """.strip()
 
 
@@ -790,7 +757,7 @@ def homepage_html() -> str:
     )
 
 def contact_page_html() -> str:
-    # Hard-coded copy (per your request)
+    # Hard-coded copy
     h1 = "Get Your Free Estimate"
     sub = "Fill out the form below and we'll connect you with a qualified local professional."
 
@@ -807,6 +774,16 @@ def contact_page_html() -> str:
         for t in why_bullets
     )
 
+    # ✅ Paste your Networx embed EXACTLY here.
+    # (This is the snippet style from your screenshot.)
+    networx_embed = """
+<div id="networx_form_container" style="margin:0px;padding:0px;">
+  <div id="nx_form" style="width: 242px; height: 375px;">
+    <script type="text/javascript" src="https://api.networx.com/iframe.php?aff_id=YOUR_AFF_ID&aff_to_form_id=YOUR_FORM_ID"></script>
+  </div>
+</div>
+""".strip()
+
     inner = f"""
 <div class="callout">
   <div class="callout-title">
@@ -817,40 +794,10 @@ def contact_page_html() -> str:
 </div>
 
 <div class="form-grid">
-  <div class="form-card">
-    <form class="form" action="{esc(CONFIG.cta_href)}" method="post">
-      <div class="field">
-        <label for="full_name">Full Name<span class="req">*</span></label>
-        <input class="input" id="full_name" name="full_name" autocomplete="name" placeholder="John Smith" required />
-      </div>
-
-      <div class="row-2">
-        <div class="field">
-          <label for="phone">Phone Number<span class="req">*</span></label>
-          <input class="input" id="phone" name="phone" autocomplete="tel" placeholder="(555) 123-4567" required />
-        </div>
-        <div class="field">
-          <label for="zip">ZIP Code<span class="req">*</span></label>
-          <input class="input" id="zip" name="zip" autocomplete="postal-code" inputmode="numeric" placeholder="12345" required />
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="email">Email Address<span class="req">*</span></label>
-        <input class="input" id="email" name="email" type="email" autocomplete="email" placeholder="john@example.com" required />
-      </div>
-
-      <div class="field">
-        <label for="details">Project Details</label>
-        <textarea class="textarea" id="details" name="details" placeholder="Tell us about your project..."></textarea>
-      </div>
-
-      <button class="btn-orange" type="submit">Submit Request</button>
-
-      <div class="privacy">
-        By submitting, you agree to be contacted about your project. We respect your privacy.
-      </div>
-    </form>
+  <div class="embed-card">
+    <div class="nx-center">
+      {networx_embed}
+    </div>
   </div>
 
   <aside class="why-box" aria-label="Why choose us">
@@ -862,6 +809,7 @@ def contact_page_html() -> str:
 </div>
 """.strip()
 
+    # Use the same site shell, but NO image on contact (recommended)
     return make_page(
         h1=h1,
         canonical="/contact/",
@@ -870,6 +818,7 @@ def contact_page_html() -> str:
         inner=inner,
         show_image=False
     )
+
 
 
 def city_page_html(city: str, state: str, col: float) -> str:
