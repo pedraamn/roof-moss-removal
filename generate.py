@@ -868,6 +868,7 @@ def contact_page_html() -> str:
         nav_key="contact",
         sub=sub,
         inner=inner,
+        show_image=False
     )
 
 
