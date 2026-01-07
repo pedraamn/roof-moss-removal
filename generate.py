@@ -451,57 +451,38 @@ footer{
 .small{color:var(--muted); font-size:12px; margin-top:8px}
 
 /* -----------------------
-   CONTACT PAGE (matches example)
+   CONTACT PAGE (matches site theme)
 ----------------------- */
-.contact-hero{
-  background:
-    radial-gradient(900px 380px at 20% 0%, rgba(255,255,255,0.10), transparent 55%),
-    radial-gradient(900px 380px at 85% 0%, rgba(255,255,255,0.08), transparent 52%),
-    #0b2342;
-  border-bottom:1px solid rgba(255,255,255,0.10);
-}
-.contact-hero .hero{
-  text-align:center;
-  padding:44px 18px 38px;
-}
-.contact-hero h1{color:#fff}
-.contact-hero .sub{color:rgba(255,255,255,0.78); margin:8px auto 0; max-width:70ch}
-
-.contact-main{
-  max-width:var(--max);
-  margin:0 auto;
-  padding:28px 18px 56px;
-}
-
-.contact-grid{
+.form-grid{
+  margin-top:14px;
   display:grid;
-  gap:18px;
+  gap:14px;
   grid-template-columns: 1fr 320px;
   align-items:start;
 }
-@media (max-width: 860px){
-  .contact-grid{grid-template-columns:1fr}
+@media (max-width: 900px){
+  .form-grid{grid-template-columns:1fr}
 }
 
 .form-card{
-  background:var(--surface);
   border:1px solid var(--line);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:18px;
+  border-radius:14px;
+  padding:14px;
+  background:var(--soft);
 }
+
 .form{
   display:grid;
   gap:12px;
 }
 .field label{
   display:block;
-  font-size:12px;
-  font-weight:900;
-  color:var(--muted);
+  font-size:13px;
+  font-weight:800;
+  color:var(--ink);
   margin:0 0 6px;
 }
-.req{color:#ef4444; margin-left:2px}
+.req{color:#ef4444; margin-left:3px}
 .input, .textarea{
   width:100%;
   border:1px solid var(--line);
@@ -509,12 +490,11 @@ footer{
   padding:10px 12px;
   font:inherit;
   background:#fff;
-  outline:none;
 }
 .textarea{min-height:110px; resize:vertical}
 .input:focus, .textarea:focus{
-  border-color: rgba(22,163,74,0.45);
-  box-shadow: 0 0 0 4px rgba(22,163,74,0.12);
+  outline:2px solid rgba(22,163,74,0.35);
+  outline-offset:2px;
 }
 
 .row-2{
@@ -522,27 +502,25 @@ footer{
   gap:12px;
   grid-template-columns: 1fr 1fr;
 }
-@media (max-width: 520px){
+@media (max-width: 540px){
   .row-2{grid-template-columns:1fr}
 }
 
-.submit{
-  margin-top:4px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
+.btn-orange{
+  display:inline-block;
   width:100%;
-  border:0;
-  border-radius:12px;
   padding:11px 12px;
+  border-radius:12px;
+  border:1px solid rgba(0,0,0,0.04);
   font-weight:900;
+  font-size:13px;
   cursor:pointer;
   background:#d97706;
   color:#fff;
-  box-shadow: 0 10px 22px rgba(217,119,6,0.22);
+  box-shadow:0 8px 18px rgba(217,119,6,0.18);
 }
-.submit:hover{background:#b45309}
-.submit:focus{outline:2px solid #b45309; outline-offset:2px}
+.btn-orange:hover{background:#b45309}
+.btn-orange:focus{outline:2px solid #b45309; outline-offset:2px}
 
 .privacy{
   margin-top:10px;
@@ -551,17 +529,16 @@ footer{
   font-size:12px;
 }
 
-.why-card{
-  border-radius:16px;
-  background:#0b2342;
-  color:#fff;
-  border:1px solid rgba(255,255,255,0.12);
-  box-shadow: 0 16px 34px rgba(11,35,66,0.22);
-  padding:16px;
+.why-box{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+  box-shadow:0 10px 24px rgba(17,24,39,0.05);
 }
-.why-card h3{
-  margin:0 0 12px;
-  font-size:16px;
+.why-box h3{
+  margin:0 0 10px;
+  font-size:15px;
   letter-spacing:-0.01em;
 }
 .why-list{
@@ -575,28 +552,22 @@ footer{
   display:flex;
   gap:10px;
   align-items:flex-start;
-  color:rgba(255,255,255,0.85);
+  color:var(--muted);
   font-size:13px;
 }
-.check{
+.tick{
   width:18px;
   height:18px;
   border-radius:999px;
-  background:rgba(217,119,6,0.22);
-  border:1px solid rgba(217,119,6,0.45);
+  background:rgba(22,163,74,0.12);
+  border:1px solid rgba(22,163,74,0.22);
   display:inline-flex;
   align-items:center;
   justify-content:center;
   flex:0 0 auto;
   margin-top:1px;
 }
-.check:before{
-  content:"✓";
-  font-weight:900;
-  color:#fff;
-  font-size:12px;
-  line-height:1;
-}
+.tick:before{content:"✓"; font-weight:900; color:var(--ink); font-size:12px; line-height:1}
 """.strip()
 
 
@@ -686,24 +657,29 @@ def footer_block() -> str:
 """.rstrip()
 
 
-def page_shell(*, h1: str, sub: str, inner_html: str) -> str:
-    # Single image used everywhere. Since we copy picture.png into /public/,
-    # it can be referenced as "/picture.png" from any route.
+def page_shell(*, h1: str, sub: str, inner_html: str, show_image: bool = True) -> str:
     img_src = f"/{CONFIG.image_filename}"
+    img_html = ""
+    if show_image:
+        img_html = f"""
+    <div class="img">
+      <img src="{esc(img_src)}" alt="Service image" loading="lazy" />
+    </div>
+""".rstrip()
+
     return (
         header_block(h1=h1, sub=sub)
         + f"""
 <main>
   <section class="card">
-    <div class="img">
-      <img src="{esc(img_src)}" alt="Service image" loading="lazy" />
-    </div>
+{img_html}
     {inner_html}
   </section>
 </main>
 """
         + footer_block()
     ).rstrip()
+
 
 
 # -----------------------
@@ -771,14 +747,14 @@ def city_cost_callout_html(city: str, state: str) -> str:
 # -----------------------
 # PAGE FACTORY
 # -----------------------
-def make_page(*, h1: str, canonical: str, nav_key: str, sub: str, inner: str) -> str:
+def make_page(*, h1: str, canonical: str, nav_key: str, sub: str, inner: str, show_image: bool = False) -> str:
     h1 = clamp_title(h1, 70)
     title = h1  # enforce title == h1
     return base_html(
         title=title,
         canonical_path=canonical,
         current_nav=nav_key,
-        body=page_shell(h1=h1, sub=sub, inner_html=inner),
+        body=page_shell(h1=h1, sub=sub, inner_html=inner, show_image=show_image),
     )
 
 
@@ -814,8 +790,8 @@ def homepage_html() -> str:
     )
 
 def contact_page_html() -> str:
-    # --- HARD-CODED CONTACT COPY ---
-    title = "Get Your Free Estimate"
+    # Hard-coded copy (per your request)
+    h1 = "Get Your Free Estimate"
     sub = "Fill out the form below and we'll connect you with a qualified local professional."
 
     why_title = "Why Choose Us?"
@@ -826,74 +802,72 @@ def contact_page_html() -> str:
         "Fast response times",
     )
 
-    action = CONFIG.cta_href  # mailto or external handler
-
     why_items = "\n".join(
-        f'<li class="why-item"><span class="check" aria-hidden="true"></span><span>{esc(t)}</span></li>'
+        f'<li class="why-item"><span class="tick" aria-hidden="true"></span><span>{esc(t)}</span></li>'
         for t in why_bullets
     )
 
-    body = (
-        contact_header_block(h1=title, sub=sub)
-        + f"""
-<main class="contact-main">
-  <div class="contact-grid">
-    <section class="form-card" aria-label="Estimate request form">
-      <form class="form" action="{esc(action)}" method="post">
-        <div class="field">
-          <label for="full_name">Full Name<span class="req">*</span></label>
-          <input class="input" id="full_name" name="full_name" placeholder="John Smith" required />
-        </div>
-
-        <div class="row-2">
-          <div class="field">
-            <label for="phone">Phone Number<span class="req">*</span></label>
-            <input class="input" id="phone" name="phone" placeholder="(555) 123-4567" required />
-          </div>
-          <div class="field">
-            <label for="zip">ZIP Code<span class="req">*</span></label>
-            <input class="input" id="zip" name="zip" placeholder="12345" required />
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="email">Email Address<span class="req">*</span></label>
-          <input class="input" id="email" name="email" type="email" placeholder="john@example.com" required />
-        </div>
-
-        <div class="field">
-          <label for="details">Project Details</label>
-          <textarea class="textarea" id="details" name="details"
-            placeholder="Tell us about your project..."></textarea>
-        </div>
-
-        <button class="submit" type="submit">Submit Request</button>
-
-        <div class="privacy">
-          By submitting, you agree to be contacted about your project. We respect your privacy.
-        </div>
-      </form>
-    </section>
-
-    <aside class="why-card" aria-label="Why choose us">
-      <h3>{esc(why_title)}</h3>
-      <ul class="why-list">
-        {why_items}
-      </ul>
-    </aside>
+    inner = f"""
+<div class="callout">
+  <div class="callout-title">
+    <span class="badge">Fast quotes</span>
+    <span>Most requests get a response within 1 business day.</span>
   </div>
-</main>
-"""
-        + footer_block()
-    ).rstrip()
+  <p>Share a few details and we’ll route you to a qualified local pro.</p>
+</div>
 
-    h1 = clamp_title(title, 70)
+<div class="form-grid">
+  <div class="form-card">
+    <form class="form" action="{esc(CONFIG.cta_href)}" method="post">
+      <div class="field">
+        <label for="full_name">Full Name<span class="req">*</span></label>
+        <input class="input" id="full_name" name="full_name" autocomplete="name" placeholder="John Smith" required />
+      </div>
 
-    return base_html(
-        title=h1,
-        canonical_path="/contact/",
-        current_nav="contact",
-        body=body,
+      <div class="row-2">
+        <div class="field">
+          <label for="phone">Phone Number<span class="req">*</span></label>
+          <input class="input" id="phone" name="phone" autocomplete="tel" placeholder="(555) 123-4567" required />
+        </div>
+        <div class="field">
+          <label for="zip">ZIP Code<span class="req">*</span></label>
+          <input class="input" id="zip" name="zip" autocomplete="postal-code" inputmode="numeric" placeholder="12345" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email Address<span class="req">*</span></label>
+        <input class="input" id="email" name="email" type="email" autocomplete="email" placeholder="john@example.com" required />
+      </div>
+
+      <div class="field">
+        <label for="details">Project Details</label>
+        <textarea class="textarea" id="details" name="details" placeholder="Tell us about your project..."></textarea>
+      </div>
+
+      <button class="btn-orange" type="submit">Submit Request</button>
+
+      <div class="privacy">
+        By submitting, you agree to be contacted about your project. We respect your privacy.
+      </div>
+    </form>
+  </div>
+
+  <aside class="why-box" aria-label="Why choose us">
+    <h3>{esc(why_title)}</h3>
+    <ul class="why-list">
+      {why_items}
+    </ul>
+  </aside>
+</div>
+""".strip()
+
+    return make_page(
+        h1=h1,
+        canonical="/contact/",
+        nav_key="contact",
+        sub=sub,
+        inner=inner,
     )
 
 
