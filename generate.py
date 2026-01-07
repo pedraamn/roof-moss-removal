@@ -888,31 +888,31 @@ def wrangler_content() -> str:
 # MAIN
 # -----------------------
 def main() -> None:
-    script_dir = Path(__file__).resolve().parent
-    out = CONFIG.output_dir
+  script_dir = Path(__file__).resolve().parent
+  out = CONFIG.output_dir
 
-    reset_output_dir(out)
+  reset_output_dir(out)
 
-    # Copy the single shared image into /public/ so all pages can reference "/picture.png".
-    copy_site_image(src_dir=script_dir, out_dir=out, filename=CONFIG.image_filename)
+  # Copy the single shared image into /public/ so all pages can reference "/picture.png".
+  copy_site_image(src_dir=script_dir, out_dir=out, filename=CONFIG.image_filename)
 
-    # Core pages
-    write_text(out / "index.html", homepage_html())
-    write_text(out / "cost" / "index.html", cost_page_html())
-    write_text(out / "how-to" / "index.html", howto_page_html())
-    write_text(out / "contact" / "index.html", contact_page_html())
+  # Core pages
+  write_text(out / "index.html", homepage_html())
+  write_text(out / "cost" / "index.html", cost_page_html())
+  write_text(out / "how-to" / "index.html", howto_page_html())
+  write_text(out / "contact" / "index.html", contact_page_html())
 
-    # City pages
-    for city, state, col in CITIES:
-        write_text(out / city_state_slug(city, state) / "index.html", city_page_html(city, state, col))
+  # City pages
+  for city, state, col in CITIES:
+      write_text(out / city_state_slug(city, state) / "index.html", city_page_html(city, state, col))
 
-    # robots + sitemap + wrangler
-    urls = ["/", "/cost/", "/how-to/"] + [f"/{city_state_slug(c, s)}/" for c, s, _ in CITIES]
-    write_text(out / "robots.txt", robots_txt())
-    write_text(out / "sitemap.xml", sitemap_xml(urls))
-    write_text(script_dir / "wrangler.jsonc", wrangler_content())
+  # robots + sitemap + wrangler
+  urls = ["/", "/cost/", "/how-to/"] + [f"/{city_state_slug(c, s)}/" for c, s, _ in CITIES]
+  write_text(out / "robots.txt", robots_txt())
+  write_text(out / "sitemap.xml", sitemap_xml(urls))
+  write_text(script_dir / "wrangler.jsonc", wrangler_content())
 
-    print(f"✅ Generated {len(urls)} pages into: {out.resolve()}")
+  print(f"✅ Generated {len(urls)} pages into: {out.resolve()}")
 
 
 if __name__ == "__main__":
