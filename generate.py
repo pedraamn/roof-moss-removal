@@ -27,7 +27,7 @@ class SiteConfig:
   base_name: str = "Roof Moss Removal"
   brand_name: str = "Roof Moss Removal Company"
   cta_text: str = "Get Free Estimate"
-  cta_href: str = "mailto:hello@example.com?subject=Free%20Quote%20Request"
+  cta_href: str = "/contact/"
 
   # Build / assets
   output_dir: Path = Path("public")
@@ -551,7 +551,6 @@ def nav_html(current: str) -> str:
         + item("/", "Home", "home")
         + item("/cost/", "Cost", "cost")
         + item("/how-to/", "How-To", "howto")
-        + item("/contact/", "Contact", "contact")
         + f'<a class="btn" href="{esc(CONFIG.cta_href)}">{esc(CONFIG.cta_text)}</a>'
         + "</nav>"
     )
