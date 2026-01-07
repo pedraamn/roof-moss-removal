@@ -9,8 +9,11 @@ import html
 import re
 import shutil
 
+
+
 from dataclasses import dataclass
 from pathlib import Path
+from datetime import date
 
 @dataclass(frozen=True)
 class SiteConfig:
@@ -687,7 +690,7 @@ def howto_page_html() -> str:
 
 
 # -----------------------
-# ROBOTS + SITEMAP
+# ROBOTS + SITEMAP + WRANGLER
 # -----------------------
 def robots_txt() -> str:
     return "User-agent: *\nAllow: /\nSitemap: /sitemap.xml\n"
@@ -700,6 +703,19 @@ def sitemap_xml(urls: list[str]) -> str:
         + "".join(f"  <url><loc>{u}</loc></url>\n" for u in urls)
         + "</urlset>\n"
     )
+
+def wrangler_content(out_dir: Path) -> None:
+    name = CONFIG.base_name.lower().replace(" ", "-")
+    today = date.today().isoformat()
+
+    content = f"""{
+  "name": "{name}",
+  "compatibility_date": "{today}",
+  "assets": {
+    "directory": "./public"
+  }
+}
+"""
 
 
 # -----------------------
@@ -723,10 +739,11 @@ def main() -> None:
     for city, state, col in CITIES:
         write_text(out / city_state_slug(city, state) / "index.html", city_page_html(city, state, col))
 
-    # robots + sitemap
+    # robots + sitemap + wrangler
     urls = ["/", "/cost/", "/how-to/"] + [f"/{city_state_slug(c, s)}/" for c, s, _ in CITIES]
     write_text(out / "robots.txt", robots_txt())
     write_text(out / "sitemap.xml", sitemap_xml(urls))
+    write_text(script_dir / "wrangler.jsonc", wrangler_content())
 
     print(f"✅ Generated {len(urls)} pages into: {out.resolve()}")
 
