@@ -449,6 +449,154 @@ footer{
 .footer-links{display:flex; gap:12px; flex-wrap:wrap}
 .footer-links a{color:var(--muted); text-decoration:none; font-size:13px; padding:6px 0}
 .small{color:var(--muted); font-size:12px; margin-top:8px}
+
+/* -----------------------
+   CONTACT PAGE (matches example)
+----------------------- */
+.contact-hero{
+  background:
+    radial-gradient(900px 380px at 20% 0%, rgba(255,255,255,0.10), transparent 55%),
+    radial-gradient(900px 380px at 85% 0%, rgba(255,255,255,0.08), transparent 52%),
+    #0b2342;
+  border-bottom:1px solid rgba(255,255,255,0.10);
+}
+.contact-hero .hero{
+  text-align:center;
+  padding:44px 18px 38px;
+}
+.contact-hero h1{color:#fff}
+.contact-hero .sub{color:rgba(255,255,255,0.78); margin:8px auto 0; max-width:70ch}
+
+.contact-main{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:28px 18px 56px;
+}
+
+.contact-grid{
+  display:grid;
+  gap:18px;
+  grid-template-columns: 1fr 320px;
+  align-items:start;
+}
+@media (max-width: 860px){
+  .contact-grid{grid-template-columns:1fr}
+}
+
+.form-card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:18px;
+}
+.form{
+  display:grid;
+  gap:12px;
+}
+.field label{
+  display:block;
+  font-size:12px;
+  font-weight:900;
+  color:var(--muted);
+  margin:0 0 6px;
+}
+.req{color:#ef4444; margin-left:2px}
+.input, .textarea{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:10px 12px;
+  font:inherit;
+  background:#fff;
+  outline:none;
+}
+.textarea{min-height:110px; resize:vertical}
+.input:focus, .textarea:focus{
+  border-color: rgba(22,163,74,0.45);
+  box-shadow: 0 0 0 4px rgba(22,163,74,0.12);
+}
+
+.row-2{
+  display:grid;
+  gap:12px;
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 520px){
+  .row-2{grid-template-columns:1fr}
+}
+
+.submit{
+  margin-top:4px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  border:0;
+  border-radius:12px;
+  padding:11px 12px;
+  font-weight:900;
+  cursor:pointer;
+  background:#d97706;
+  color:#fff;
+  box-shadow: 0 10px 22px rgba(217,119,6,0.22);
+}
+.submit:hover{background:#b45309}
+.submit:focus{outline:2px solid #b45309; outline-offset:2px}
+
+.privacy{
+  margin-top:10px;
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.why-card{
+  border-radius:16px;
+  background:#0b2342;
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 16px 34px rgba(11,35,66,0.22);
+  padding:16px;
+}
+.why-card h3{
+  margin:0 0 12px;
+  font-size:16px;
+  letter-spacing:-0.01em;
+}
+.why-list{
+  margin:0;
+  padding:0;
+  list-style:none;
+  display:grid;
+  gap:10px;
+}
+.why-item{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  color:rgba(255,255,255,0.85);
+  font-size:13px;
+}
+.check{
+  width:18px;
+  height:18px;
+  border-radius:999px;
+  background:rgba(217,119,6,0.22);
+  border:1px solid rgba(217,119,6,0.45);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  margin-top:1px;
+}
+.check:before{
+  content:"✓";
+  font-weight:900;
+  color:#fff;
+  font-size:12px;
+  line-height:1;
+}
 """.strip()
 
 
@@ -465,6 +613,7 @@ def nav_html(current: str) -> str:
         + item("/", "Home", "home")
         + item("/cost/", "Cost", "cost")
         + item("/how-to/", "How-To", "howto")
+        + item("/contact/", "Contact", "contact")
         + f'<a class="btn" href="{esc(CONFIG.cta_href)}">{esc(CONFIG.cta_text)}</a>'
         + "</nav>"
     )
@@ -499,6 +648,16 @@ def base_html(*, title: str, canonical_path: str, current_nav: str, body: str) -
 def header_block(*, h1: str, sub: str) -> str:
     return f"""
 <header>
+  <div class="hero">
+    <h1>{esc(h1)}</h1>
+    <p class="sub">{esc(sub)}</p>
+  </div>
+</header>
+""".rstrip()
+
+def contact_header_block(*, h1: str, sub: str) -> str:
+    return f"""
+<header class="contact-hero">
   <div class="hero">
     <h1>{esc(h1)}</h1>
     <p class="sub">{esc(sub)}</p>
@@ -654,6 +813,90 @@ def homepage_html() -> str:
         inner=inner,
     )
 
+def contact_page_html() -> str:
+    # --- HARD-CODED CONTACT COPY ---
+    title = "Get Your Free Estimate"
+    sub = "Fill out the form below and we'll connect you with a qualified local professional."
+
+    why_title = "Why Choose Us?"
+    why_bullets = (
+        "Free, no-obligation estimates",
+        "Trusted, experienced professionals",
+        "Nationwide service coverage",
+        "Fast response times",
+    )
+
+    action = CONFIG.cta_href  # mailto or external handler
+
+    why_items = "\n".join(
+        f'<li class="why-item"><span class="check" aria-hidden="true"></span><span>{esc(t)}</span></li>'
+        for t in why_bullets
+    )
+
+    body = (
+        contact_header_block(h1=title, sub=sub)
+        + f"""
+<main class="contact-main">
+  <div class="contact-grid">
+    <section class="form-card" aria-label="Estimate request form">
+      <form class="form" action="{esc(action)}" method="post">
+        <div class="field">
+          <label for="full_name">Full Name<span class="req">*</span></label>
+          <input class="input" id="full_name" name="full_name" placeholder="John Smith" required />
+        </div>
+
+        <div class="row-2">
+          <div class="field">
+            <label for="phone">Phone Number<span class="req">*</span></label>
+            <input class="input" id="phone" name="phone" placeholder="(555) 123-4567" required />
+          </div>
+          <div class="field">
+            <label for="zip">ZIP Code<span class="req">*</span></label>
+            <input class="input" id="zip" name="zip" placeholder="12345" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email Address<span class="req">*</span></label>
+          <input class="input" id="email" name="email" type="email" placeholder="john@example.com" required />
+        </div>
+
+        <div class="field">
+          <label for="details">Project Details</label>
+          <textarea class="textarea" id="details" name="details"
+            placeholder="Tell us about your project..."></textarea>
+        </div>
+
+        <button class="submit" type="submit">Submit Request</button>
+
+        <div class="privacy">
+          By submitting, you agree to be contacted about your project. We respect your privacy.
+        </div>
+      </form>
+    </section>
+
+    <aside class="why-card" aria-label="Why choose us">
+      <h3>{esc(why_title)}</h3>
+      <ul class="why-list">
+        {why_items}
+      </ul>
+    </aside>
+  </div>
+</main>
+"""
+        + footer_block()
+    ).rstrip()
+
+    h1 = clamp_title(title, 70)
+
+    return base_html(
+        title=h1,
+        canonical_path="/contact/",
+        current_nav="contact",
+        body=body,
+    )
+
+
 def city_page_html(city: str, state: str, col: float) -> str:
     inner = (
       location_cost_section(city, state, col)
@@ -704,17 +947,17 @@ def sitemap_xml(urls: list[str]) -> str:
         + "</urlset>\n"
     )
 
-def wrangler_content(out_dir: Path) -> None:
+def wrangler_content() -> str:
     name = CONFIG.base_name.lower().replace(" ", "-")
     today = date.today().isoformat()
 
-    content = f"""{
+    return f"""{{
   "name": "{name}",
   "compatibility_date": "{today}",
-  "assets": {
+  "assets": {{
     "directory": "./public"
-  }
-}
+  }}
+}}
 """
 
 
