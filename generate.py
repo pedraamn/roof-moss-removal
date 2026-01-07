@@ -747,7 +747,7 @@ def city_cost_callout_html(city: str, state: str) -> str:
 # -----------------------
 # PAGE FACTORY
 # -----------------------
-def make_page(*, h1: str, canonical: str, nav_key: str, sub: str, inner: str, show_image: bool = False) -> str:
+def make_page(*, h1: str, canonical: str, nav_key: str, sub: str, inner: str, show_image: bool = True) -> str:
     h1 = clamp_title(h1, 70)
     title = h1  # enforce title == h1
     return base_html(
