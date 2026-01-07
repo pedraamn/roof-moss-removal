@@ -784,14 +784,6 @@ def contact_page_html() -> str:
 """.strip()
 
     inner = f"""
-<div class="callout">
-  <div class="callout-title">
-    <span class="badge">Fast quotes</span>
-    <span>Most requests get a response within 1 business day.</span>
-  </div>
-  <p>Share a few details and we’ll route you to a qualified local pro.</p>
-</div>
-
 <div class="form-grid">
   <div class="embed-card">
     <div class="nx-center">
