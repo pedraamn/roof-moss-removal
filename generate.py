@@ -476,7 +476,7 @@ hr{border:0; border-top:1px solid var(--line); margin:18px 0}
 }
 
 /* -----------------------
-   CONTACT FORM
+   CONTACT FORM (UPDATED)
 ----------------------- */
 .form-grid{
   margin-top:14px;
@@ -498,12 +498,13 @@ hr{border:0; border-top:1px solid var(--line); margin:18px 0}
 
 .nx-center{
   display:flex;
-  justify-content:center;
+  justify-content:center; /* mobile centered */
 }
 
-/* Responsive Networx sizing */
+/* Networx container sizing (mobile-first) */
 #nx_form{
-  width:min(100%, 520px);
+  width:100%;
+  max-width:520px;
   min-height:520px;
 }
 
@@ -514,10 +515,16 @@ hr{border:0; border-top:1px solid var(--line); margin:18px 0}
   border:0 !important;
 }
 
+/* Desktop: fill the left column + fluid height; stop centering */
 @media (min-width: 900px){
+  .nx-center{
+    justify-content:flex-start;
+  }
+
   #nx_form{
-    width: clamp(620px, 60vw, 900px);
-    min-height: clamp(560px, 55vh, 760px);
+    width:100%;
+    max-width:900px;
+    min-height:clamp(560px, 60vh, 820px);
   }
 }
 
@@ -593,6 +600,7 @@ footer{
   color:var(--muted);
   font-size:12px;
 }
+
 /* -----------------------
    MOBILE NAV FIX (KEY PART)
 ----------------------- */
@@ -613,6 +621,7 @@ footer{
   }
 }
 """.strip()
+
 
 
 
