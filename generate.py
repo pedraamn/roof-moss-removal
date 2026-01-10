@@ -516,8 +516,8 @@ hr{border:0; border-top:1px solid var(--line); margin:18px 0}
 
 @media (min-width: 900px){
   #nx_form{
-    width:min(100%, 620px);
-    min-height:560px;
+    width: clamp(620px, 60vw, 900px);
+    min-height: clamp(560px, 55vh, 760px);
   }
 }
 
