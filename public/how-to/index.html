@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>How to Remove Roof Moss</title>
+  <title>How Woodpecker Damage Repair Works</title>
   <link rel="canonical" href="/how-to/" />
   <style>
 :root{
@@ -34,6 +34,9 @@ body{
 a{color:inherit}
 a:focus{outline:2px solid var(--cta); outline-offset:2px}
 
+/* -----------------------
+   TOP NAV
+----------------------- */
 .topbar{
   position:sticky;
   top:0;
@@ -81,6 +84,7 @@ a:focus{outline:2px solid var(--cta); outline-offset:2px}
   border:1px solid var(--line);
 }
 
+/* CTA button */
 .btn{
   display:inline-block;
   padding:9px 12px;
@@ -96,15 +100,17 @@ a:focus{outline:2px solid var(--cta); outline-offset:2px}
 .btn:hover{background:var(--cta2)}
 .btn:focus{outline:2px solid var(--cta2); outline-offset:2px}
 
-/* IMPORTANT: nav links apply grey text; ensure CTA stays white in the toolbar */
+/* Keep CTA white in nav */
 .nav a.btn{
   color:#fff;
   background:var(--cta);
   border-color:rgba(0,0,0,0.04);
 }
 .nav a.btn:hover{background:var(--cta2)}
-.nav a.btn:focus{outline:2px solid var(--cta2); outline-offset:2px}
 
+/* -----------------------
+   HERO
+----------------------- */
 header{
   border-bottom:1px solid var(--line);
   background:
@@ -118,7 +124,6 @@ header{
   padding:34px 18px 24px;
   display:grid;
   gap:10px;
-  text-align:left;
 }
 .hero h1{
   margin:0;
@@ -126,8 +131,16 @@ header{
   letter-spacing:-0.03em;
   line-height:1.18;
 }
-.sub{margin:0; color:var(--muted); max-width:78ch; font-size:14px}
+.sub{
+  margin:0;
+  color:var(--muted);
+  max-width:78ch;
+  font-size:14px;
+}
 
+/* -----------------------
+   MAIN CONTENT
+----------------------- */
 main{
   max-width:var(--max);
   margin:0 auto;
@@ -140,6 +153,8 @@ main{
   padding:18px;
   box-shadow:var(--shadow);
 }
+
+/* Service image – responsive, smaller on desktop */
 .img{
   margin-top:14px;
   border-radius:14px;
@@ -147,8 +162,22 @@ main{
   border:1px solid var(--line);
   background:var(--soft);
   box-shadow:var(--shadow2);
+  width:100%;
 }
-.img img{display:block; width:100%; height:auto}
+.img img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+/* ~50% width on desktop */
+@media (min-width: 900px){
+  .img{
+    max-width:50%;
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
 
 h2{
   margin:18px 0 8px;
@@ -159,6 +188,9 @@ p{margin:0 0 10px}
 .muted{color:var(--muted); font-size:13px}
 hr{border:0; border-top:1px solid var(--line); margin:18px 0}
 
+/* -----------------------
+   CITY GRID
+----------------------- */
 .city-grid{
   list-style:none;
   padding:0;
@@ -174,7 +206,7 @@ hr{border:0; border-top:1px solid var(--line); margin:18px 0}
   background:#fff;
   border:1px solid var(--line);
   border-radius:14px;
-  padding:12px 12px;
+  padding:12px;
   font-weight:800;
   font-size:14px;
   box-shadow:0 10px 24px rgba(17,24,39,0.05);
@@ -184,9 +216,12 @@ hr{border:0; border-top:1px solid var(--line); margin:18px 0}
   box-shadow:0 14px 28px rgba(17,24,39,0.08);
 }
 
+/* -----------------------
+   CALLOUT
+----------------------- */
 .callout{
   margin:16px 0 12px;
-  padding:14px 14px;
+  padding:14px;
   border-radius:14px;
   border:1px solid rgba(22,163,74,0.22);
   background:linear-gradient(180deg, rgba(22,163,74,0.08), rgba(22,163,74,0.03));
@@ -196,47 +231,24 @@ hr{border:0; border-top:1px solid var(--line); margin:18px 0}
   align-items:center;
   gap:10px;
   font-weight:900;
-  letter-spacing:-0.01em;
-  margin:0 0 6px;
 }
 .badge{
-  display:inline-block;
   padding:3px 10px;
   border-radius:999px;
   background:rgba(22,163,74,0.14);
   border:1px solid rgba(22,163,74,0.22);
-  color:var(--ink);
   font-size:12px;
   font-weight:900;
 }
-.callout p{margin:0; color:var(--muted); font-size:13px}
-
-footer{
-  border-top:1px solid var(--line);
-  background:#fbfbfa;
-}
-.footer-inner{
-  max-width:var(--max);
-  margin:0 auto;
-  padding:28px 18px;
-  display:grid;
-  gap:10px;
-  text-align:left;
-}
-.footer-inner h2{margin:0; font-size:18px}
-.footer-links{display:flex; gap:12px; flex-wrap:wrap}
-.footer-links a{color:var(--muted); text-decoration:none; font-size:13px; padding:6px 0}
-.small{color:var(--muted); font-size:12px; margin-top:8px}
-
 
 /* -----------------------
-   CONTACT (Networx embed)
+   CONTACT FORM
 ----------------------- */
 .form-grid{
   margin-top:14px;
   display:grid;
   gap:14px;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns:1fr 320px;
   align-items:start;
 }
 @media (max-width: 900px){
@@ -246,7 +258,7 @@ footer{
 .embed-card{
   border:1px solid var(--line);
   border-radius:14px;
-  padding:14px;
+  padding:18px;
   background:var(--soft);
 }
 
@@ -255,18 +267,29 @@ footer{
   justify-content:center;
 }
 
+/* Responsive Networx sizing */
 #nx_form{
-  max-width:100%;
+  width:min(100%, 520px);
+  min-height:520px;
 }
 
-/* Slight scale-down for small phones */
-@media (max-width: 420px){
+/* Force iframe to fill container */
+#networx_form_container iframe{
+  width:100% !important;
+  height:100% !important;
+  border:0 !important;
+}
+
+@media (min-width: 900px){
   #nx_form{
-    transform: scale(0.92);
-    transform-origin: top center;
+    width:min(100%, 620px);
+    min-height:560px;
   }
 }
 
+/* -----------------------
+   WHY BOX
+----------------------- */
 .why-box{
   background:#fff;
   border:1px solid var(--line);
@@ -277,12 +300,11 @@ footer{
 .why-box h3{
   margin:0 0 10px;
   font-size:15px;
-  letter-spacing:-0.01em;
 }
 .why-list{
-  margin:0;
-  padding:0;
   list-style:none;
+  padding:0;
+  margin:0;
   display:grid;
   gap:10px;
 }
@@ -302,30 +324,55 @@ footer{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  flex:0 0 auto;
-  margin-top:1px;
 }
 .tick:before{
   content:"✓";
   font-weight:900;
-  color:var(--ink);
   font-size:12px;
-  line-height:1;
+}
+
+/* -----------------------
+   FOOTER
+----------------------- */
+footer{
+  border-top:1px solid var(--line);
+  background:#fbfbfa;
+}
+.footer-inner{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:28px 18px;
+  display:grid;
+  gap:10px;
+}
+.footer-links{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.footer-links a{
+  color:var(--muted);
+  text-decoration:none;
+  font-size:13px;
+}
+.small{
+  color:var(--muted);
+  font-size:12px;
 }
   </style>
 </head>
 <body>
   <div class="topbar">
     <div class="topbar-inner">
-      <a class="brand" href="/">Roof Moss Removal Company</a>
+      <a class="brand" href="/">Woodpecker Damage Repair Company</a>
       <nav class="nav" aria-label="Primary navigation"><a href="/">Home</a><a href="/cost/">Cost</a><a href="/how-to/" aria-current="page">How-To</a><a class="btn" href="/contact/">Get Free Estimate</a></nav>
     </div>
   </div>
 
 <header>
   <div class="hero">
-    <h1>How to Remove Roof Moss</h1>
-    <p class="sub">What homeowners should know before attempting moss removal on their roof.</p>
+    <h1>How Woodpecker Damage Repair Works</h1>
+    <p class="sub">A practical, homeowner-friendly guide to how repairs are typically done and when DIY breaks down.</p>
   </div>
 </header>
 <main>
@@ -334,34 +381,36 @@ footer{
     <div class="img">
       <img src="/picture.png" alt="Service image" loading="lazy" />
     </div>
-    <h2>How to Remove Roof Moss</h2>
-<p>To remove roof moss, the growth must be loosened and cleared without damaging the roofing material underneath. Improper scraping or washing can remove protective granules and shorten roof life.</p>
-<h2>Can You Remove Roof Moss Yourself?</h2>
-<p>You can remove roof moss yourself in small areas, but it requires careful handling and proper safety precautions. Roof access, slip hazards, and shingle damage are common risks with DIY attempts.</p>
-<h2>What Kills Roof Moss?</h2>
-<p>Roof moss is typically killed using treatments that stop growth and allow moss to dry out and detach naturally. Applying the wrong products can discolor or damage roofing materials.</p>
-<h2>Does Pressure Washing Remove Roof Moss?</h2>
-<p>Pressure washing can remove roof moss, but it often causes more harm than good by stripping shingle granules and forcing water under roofing materials. Many roof manufacturers discourage pressure washing for this reason.</p>
-<h2>How to Prevent Moss From Coming Back</h2>
-<p>Preventing roof moss from coming back usually involves improving sunlight exposure, reducing debris buildup, and applying preventive treatments after removal. Without prevention, moss often returns.</p>
-<h2>When DIY Roof Moss Removal Is Not Recommended</h2>
-<p>DIY roof moss removal is not recommended for steep roofs, widespread moss growth, or fragile roofing materials. In these cases, professional <a href="/">roof moss removal services</a> are the safer option.</p>
+    <h2>Quick Answer: How Does Woodpecker Damage Repair Usually Work?</h2>
+<p>Woodpecker damage repair usually works by removing weak material, sealing the opening, patching or replacing the damaged section, and restoring the finish so it’s weather-tight again. Pros focus on moisture control and adhesion because a patch that looks fine today can fail quickly if water can get behind it.</p>
+<h2>How Professionals Identify the Extent of Woodpecker Damage</h2>
+<p>The first step is checking whether the damage is only in the siding/trim or if moisture has affected the material behind it. This matters because sealing a hole over soft wood or hidden rot leads to repeat failure and larger repair scope later.</p>
+<h2>How Repair Methods Are Chosen for Woodpecker Holes</h2>
+<p>The repair method depends on hole size, hole density, and whether the surrounding wood is sound. Small, isolated holes may be patched on solid material, but repeated damage or weak edges often calls for replacing boards or trim so the repair has a stable base.</p>
+<h2>How Woodpecker Damage Is Sealed Against Water</h2>
+<p>A durable repair seals the hole and the repair edges so wind-driven rain can’t wick behind the finish. Many DIY repairs fail because the patch isn’t fully sealed, which allows moisture intrusion and breaks down adhesion over time.</p>
+<h2>How Finish Matching Affects the Final Repair</h2>
+<p>Finish matching is what makes repairs blend and stay durable, especially on stained or weathered exteriors. Even when the patch is structurally sound, mismatched paint, sheen, or texture can make the repair stand out and may require a larger blend area to look consistent.</p>
+<h2>When DIY Woodpecker Repairs Commonly Fail</h2>
+<p>DIY repairs commonly fail when the underlying wood is soft, the repair isn’t fully sealed, or finish bonding is poor on weathered surfaces. If you want a realistic sense of pricing when repairs involve replacement and finish blending, you can <a href="/">view our woodpecker damage repair cost guide</a>.</p>
   </section>
 </main>
 
 <footer>
   <div class="footer-inner">
+    
     <h2>Next steps</h2>
     <p class="sub">Ready to move forward? Request a free quote.</p>
     <div>
       <a class="btn" href="/contact/">Get Free Estimate</a>
     </div>
+
     <div class="footer-links">
       <a href="/">Home</a>
       <a href="/cost/">Cost</a>
       <a href="/how-to/">How-To</a>
     </div>
-    <div class="small">© Roof Moss Removal Company. All rights reserved.</div>
+    <div class="small">© Woodpecker Damage Repair Company. All rights reserved.</div>
   </div>
 </footer>
 </body>

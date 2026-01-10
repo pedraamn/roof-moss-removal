@@ -23,9 +23,10 @@ class SiteConfig:
   def load_cities(self):
     return load_cities_from_csv(self.cities_csv)
 
-  # Brand / site identity
-  base_name: str = "Roof Moss Removal"
-  brand_name: str = "Roof Moss Removal Company"
+  from pathlib import Path
+
+  base_name: str = "Woodpecker Damage Repair"
+  brand_name: str = "Woodpecker Damage Repair Company"
   cta_text: str = "Get Free Estimate"
   cta_href: str = "/contact/"
 
@@ -34,89 +35,100 @@ class SiteConfig:
   image_filename: str = "picture.png"  # sits next to generate.py
 
   # Pricing (base range; city pages may apply multipliers)
-  cost_low: int = 250
-  cost_high: int = 900
+  cost_low: int = 350
+  cost_high: int = 1500
 
   # Page H1 titles
-  h1_title: str = "Roof Moss Removal/Moss Cleaning/Roof Moss Treatment Services"
-  h1_short: str = "Roof Moss Removal Services"
-  h1_sub: str = "Safe moss removal and treatment to protect your roof and prevent long-term damage."
+  h1_title: str = "Woodpecker Damage Repair/Woodpecker Hole Repair/Siding Repair Services"
+  h1_short: str = "Woodpecker Damage Repair Services"
+  h1_sub: str = "Weather-tight siding and trim repairs that seal holes, match finishes, and reduce repeat damage."
 
-  cost_title: str = "Roof Moss Removal Cost"
-  cost_sub: str = "Typical pricing ranges, cost factors, and when professional removal is worth it."
+  cost_title: str = "Woodpecker Damage Repair Cost"
+  cost_sub: str = "Typical pricing ranges, scope examples, and what drives the total for siding and trim repairs."
 
-  howto_title: str = "How to Remove Roof Moss"
-  howto_sub: str = "What homeowners should know before attempting moss removal on their roof."
+  howto_title: str = "How Woodpecker Damage Repair Works"
+  howto_sub: str = "A practical, homeowner-friendly guide to how repairs are typically done and when DIY breaks down."
 
   # MAIN PAGE (shared guide)
   main_h2: list[str] = (
-    "What Is Roof Moss Removal?",
-    "Why Does Moss Grow on Roofs?",
-    "Is Roof Moss Bad for Your Roof?",
-    "What Types of Roofs Get Moss?",
-    "How Fast Does Roof Moss Spread?",
-    "Should Roof Moss Be Removed?",
-    "When to Hire a Professional for Roof Moss Removal",
+    "What Is Woodpecker Damage Repair?",
+    "Why Are Woodpeckers Pecking My House?",
+    "What Do Woodpecker Holes Look Like in Siding or Trim?",
+    "Is Woodpecker Damage Bad for Your House?",
+    "Does Woodpecker Damage Mean Termites?",
+    "Is Woodpecker Damage Covered by Insurance?",
+    "When to Hire a Professional for Woodpecker Damage Repair",
   )
 
   main_p: list[str] = (
-    "Roof moss removal is the process of safely removing moss growth from roofing materials to prevent moisture damage and deterioration. Moss holds water against the roof surface, which can shorten the lifespan of shingles and other roofing materials.",
-    "Moss grows on roofs because of moisture, shade, and organic debris. North-facing roof slopes, tree-covered areas, and damp climates create ideal conditions for moss to take hold and spread.",
-    "Yes, roof moss is bad for your roof because it traps moisture and can lift or separate shingles over time. Left untreated, moss growth increases the risk of leaks, rot, and premature roof failure.",
-    "Roof moss commonly grows on asphalt shingles, wood shakes, tile roofs, and composite roofing materials. Any roof that retains moisture or lacks sunlight is more likely to develop moss.",
-    "Roof moss can spread quickly once established, especially in damp or shaded conditions. What starts as a small patch can expand across large sections of the roof if not addressed early.",
-    "Roof moss should be removed as soon as it’s noticed to prevent long-term damage. Early removal helps protect shingles, improve drainage, and reduce the likelihood of costly roof repairs.",
-    "Hiring a professional is recommended when moss covers large areas, when the roof is steep, or when improper removal could damage shingles. Professional roof moss removal reduces safety risks and helps protect the roof surface.",
+    "Woodpecker damage repair is the process of sealing and restoring holes in siding, trim, fascia, or soffits so the exterior is weather-tight again. The goal isn’t just to fill a hole—it’s to stabilize the surrounding material and restore a finish that won’t fail in the next storm.",
+    "Woodpeckers usually peck homes to search for insects, create a nesting cavity, or drum to mark territory. The reason matters because repairs last longer when you reduce what attracted the bird in the first place, instead of only patching the visible holes.",
+    "Woodpecker holes often appear as clean round openings, clusters of small probing holes, or larger cavities where the bird returned repeatedly. The pattern helps identify whether the issue is light probing or more serious nesting damage that may require replacement instead of patching.",
+    "Yes, woodpecker damage can be serious because even small holes can let water and pests into the wall system. Over time, repeated wetting can cause paint failure, swelling, rot, and bigger repairs than the original hole.",
+    "Woodpecker activity doesn’t automatically mean termites, but it can signal insects in or around the wood. If you’re seeing soft wood, frass, or repeated pecking in one area, treat it as a ‘possible pest + repair’ situation so you don’t seal in a hidden problem.",
+    "Insurance coverage for woodpecker damage depends on the policy and how the damage is classified. If you’re considering a claim, early photos and a repair assessment can help clarify what’s covered versus what’s considered maintenance or gradual wear.",
+    "Hire a professional when damage is spread across multiple areas, the wood is soft or deteriorated, repairs require ladder work, or finish matching matters. Professional {woodpecker damage repair services} typically include proper sealing, material stabilization, and finish blending so the repair holds up and looks consistent.",
   )
 
-  # HOW-TO PAGE
+  # HOW-TO PAGE (ordered, process-first; general guide vs step-by-step tutorial)
   howto_h2: list[str] = (
-    "How to Remove Roof Moss",
-    "Can You Remove Roof Moss Yourself?",
-    "What Kills Roof Moss?",
-    "Does Pressure Washing Remove Roof Moss?",
-    "How to Prevent Moss From Coming Back",
-    "When DIY Roof Moss Removal Is Not Recommended",
+    "Quick Answer: How Does Woodpecker Damage Repair Usually Work?",
+    "How Professionals Identify the Extent of Woodpecker Damage",
+    "How Repair Methods Are Chosen for Woodpecker Holes",
+    "How Woodpecker Damage Is Sealed Against Water",
+    "How Finish Matching Affects the Final Repair",
+    "When DIY Woodpecker Repairs Commonly Fail",
   )
 
   howto_p: list[str] = (
-    "To remove roof moss, the growth must be loosened and cleared without damaging the roofing material underneath. Improper scraping or washing can remove protective granules and shorten roof life.",
-    "You can remove roof moss yourself in small areas, but it requires careful handling and proper safety precautions. Roof access, slip hazards, and shingle damage are common risks with DIY attempts.",
-    "Roof moss is typically killed using treatments that stop growth and allow moss to dry out and detach naturally. Applying the wrong products can discolor or damage roofing materials.",
-    "Pressure washing can remove roof moss, but it often causes more harm than good by stripping shingle granules and forcing water under roofing materials. Many roof manufacturers discourage pressure washing for this reason.",
-    "Preventing roof moss from coming back usually involves improving sunlight exposure, reducing debris buildup, and applying preventive treatments after removal. Without prevention, moss often returns.",
-    "DIY roof moss removal is not recommended for steep roofs, widespread moss growth, or fragile roofing materials. In these cases, professional {roof moss removal services} are the safer option.",
+    "Woodpecker damage repair usually works by removing weak material, sealing the opening, patching or replacing the damaged section, and restoring the finish so it’s weather-tight again. Pros focus on moisture control and adhesion because a patch that looks fine today can fail quickly if water can get behind it.",
+    "The first step is checking whether the damage is only in the siding/trim or if moisture has affected the material behind it. This matters because sealing a hole over soft wood or hidden rot leads to repeat failure and larger repair scope later.",
+    "The repair method depends on hole size, hole density, and whether the surrounding wood is sound. Small, isolated holes may be patched on solid material, but repeated damage or weak edges often calls for replacing boards or trim so the repair has a stable base.",
+    "A durable repair seals the hole and the repair edges so wind-driven rain can’t wick behind the finish. Many DIY repairs fail because the patch isn’t fully sealed, which allows moisture intrusion and breaks down adhesion over time.",
+    "Finish matching is what makes repairs blend and stay durable, especially on stained or weathered exteriors. Even when the patch is structurally sound, mismatched paint, sheen, or texture can make the repair stand out and may require a larger blend area to look consistent.",
+    "DIY repairs commonly fail when the underlying wood is soft, the repair isn’t fully sealed, or finish bonding is poor on weathered surfaces. If you want a realistic sense of pricing when repairs involve replacement and finish blending, you can {view our woodpecker damage repair cost guide}.",
   )
 
-  # COST PAGE
+  # COST PAGE (your cost-guide vibe; no walkthroughs)
   cost_h2: list[str] = (
-    "How Much Does Roof Moss Removal Cost?",
-    "What Affects Roof Moss Removal Cost?",
-    "Is Professional Roof Moss Removal Worth the Cost?",
+    "Quick Answer",
+    "Direct Answer: How Much Does Woodpecker Damage Repair Cost?",
+    "Woodpecker Damage Repair Cost by Scope",
+    "Woodpecker Damage Repair Cost by Method",
+    "What Affects Woodpecker Damage Repair Pricing?",
+    "Related Cost Questions",
+    "Expert Insight from an Exterior Repair Perspective",
+    "Key Takeaways",
   )
 
   cost_p: list[str] = (
-    "Roof moss removal typically costs between a few hundred dollars for small areas and higher amounts for extensive growth. Pricing depends on roof size, moss coverage, and access difficulty.",
-    "Factors that affect roof moss removal cost include roof pitch, roofing material, amount of moss, safety requirements, and whether preventive treatments are applied after removal.",
-    "Professional roof moss removal is worth the cost when safety, roof protection, and long-term prevention are priorities. Professionals use methods designed to remove moss without damaging shingles or voiding warranties.",
+    "Woodpecker damage repair typically costs {cost_lo} to {cost_hi}, depending on how many holes there are, whether boards need replacement, and how much finish matching is required. Small patch-and-touch-up repairs are often cheaper, while scattered damage and repainting push costs higher.",
+    "Most homeowners can expect to pay {cost_lo} to {cost_hi} for professional woodpecker damage repair, with the total driven by scope and finish work. Many contractors include a minimum service fee because setup, ladder work, and blending take time even on small repairs.",
+    "Costs rise with the number of damaged areas and whether repairs are concentrated in one spot or spread across the exterior. A few holes in one board is usually faster than scattered damage across multiple elevations that requires repeated setup and blending.",
+    "Patching can be cost-effective when surrounding wood is solid, while replacement is more common when damage is widespread or edges are weak. Finish matching (paint, stain, or texture) is often the biggest price multiplier because blending may require repainting a larger section than the hole itself.",
+    "The biggest pricing drivers are repair count, access height, substrate condition, and finish matching requirements. If moisture has affected the material behind the siding, scope increases because the repair becomes a sealing and restoration job rather than cosmetic filling.",
+    "Is it cheaper to repair woodpecker holes yourself? DIY can cost less in materials, but failures from poor sealing or weak wood often create higher repair costs later. What does it cost to fix woodpecker damage to siding? Siding repairs range widely based on patching versus replacing boards and repainting to blend.",
+    "The most expensive woodpecker repairs are usually the ones done twice. A repair that isn’t fully sealed—or that’s installed on soft wood—can reopen quickly and allow moisture intrusion, expanding the scope. That’s why many homeowners choose {expert woodpecker damage repair services} when durability and finish quality matter.",
+    "Woodpecker damage repair typically costs {cost_lo} to {cost_hi}. Replacement and finish blending are what most often increase total cost. Access height and scattered damage add labor time fast. Pairing repair with deterrence reduces the odds you pay twice.",
   )
 
   # LOCAL COST (city-locked variant)
-  location_cost_h2: str = "How Much Does Roof Moss Removal Cost in {City, State}?"
+  location_cost_h2: str = "How Much Does Woodpecker Damage Repair Cost in {City, State}?"
 
   location_cost_p: str = (
-    "In {City, State}, most roof moss removal projects range from {cost_lo} to {cost_hi}, "
-    "depending on roof size, moss coverage, and how difficult the roof is to access safely. "
-    "Prices can vary based on local labor rates, roof pitch, and treatment requirements. "
-    "For a clearer breakdown of what affects pricing, you can {view our roof moss removal cost guide}."
+    "In {City, State}, most woodpecker damage repair projects range from {cost_lo} to {cost_hi}, "
+    "depending on scope and access difficulty. Prices can vary based on local labor rates, property layout, and finish matching requirements. "
+    "For a clearer breakdown of what affects pricing, you can {view our woodpecker damage repair cost guide}."
   )
 
   # IMAGES
   image_prompt: str = (
-    "A realistic outdoor photo of a roofing professional removing moss from an asphalt shingle roof, "
-    "wearing safety harness gear and gloves, using a soft brush and moss treatment applicator; "
-    "natural daylight, residential home setting, no staged stock-photo look."
+    "A realistic natural-light photo of a home exterior repair in progress: a real human contractor on a ladder "
+    "repairing small round woodpecker holes in painted wood siding near trim on a suburban house. "
+    "The worker wears safety glasses and gloves, using a putty knife and exterior-grade patch compound and a caulk gun; "
+    "tools visible, non-staged candid feel, residential yard background."
   )
+
 
 
 
@@ -256,6 +268,9 @@ body{
 a{color:inherit}
 a:focus{outline:2px solid var(--cta); outline-offset:2px}
 
+/* -----------------------
+   TOP NAV
+----------------------- */
 .topbar{
   position:sticky;
   top:0;
@@ -303,6 +318,7 @@ a:focus{outline:2px solid var(--cta); outline-offset:2px}
   border:1px solid var(--line);
 }
 
+/* CTA button */
 .btn{
   display:inline-block;
   padding:9px 12px;
@@ -318,15 +334,17 @@ a:focus{outline:2px solid var(--cta); outline-offset:2px}
 .btn:hover{background:var(--cta2)}
 .btn:focus{outline:2px solid var(--cta2); outline-offset:2px}
 
-/* IMPORTANT: nav links apply grey text; ensure CTA stays white in the toolbar */
+/* Keep CTA white in nav */
 .nav a.btn{
   color:#fff;
   background:var(--cta);
   border-color:rgba(0,0,0,0.04);
 }
 .nav a.btn:hover{background:var(--cta2)}
-.nav a.btn:focus{outline:2px solid var(--cta2); outline-offset:2px}
 
+/* -----------------------
+   HERO
+----------------------- */
 header{
   border-bottom:1px solid var(--line);
   background:
@@ -340,7 +358,6 @@ header{
   padding:34px 18px 24px;
   display:grid;
   gap:10px;
-  text-align:left;
 }
 .hero h1{
   margin:0;
@@ -348,8 +365,16 @@ header{
   letter-spacing:-0.03em;
   line-height:1.18;
 }
-.sub{margin:0; color:var(--muted); max-width:78ch; font-size:14px}
+.sub{
+  margin:0;
+  color:var(--muted);
+  max-width:78ch;
+  font-size:14px;
+}
 
+/* -----------------------
+   MAIN CONTENT
+----------------------- */
 main{
   max-width:var(--max);
   margin:0 auto;
@@ -362,6 +387,8 @@ main{
   padding:18px;
   box-shadow:var(--shadow);
 }
+
+/* Service image – responsive, smaller on desktop */
 .img{
   margin-top:14px;
   border-radius:14px;
@@ -369,8 +396,22 @@ main{
   border:1px solid var(--line);
   background:var(--soft);
   box-shadow:var(--shadow2);
+  width:100%;
 }
-.img img{display:block; width:100%; height:auto}
+.img img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+/* ~50% width on desktop */
+@media (min-width: 900px){
+  .img{
+    max-width:50%;
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
 
 h2{
   margin:18px 0 8px;
@@ -381,6 +422,9 @@ p{margin:0 0 10px}
 .muted{color:var(--muted); font-size:13px}
 hr{border:0; border-top:1px solid var(--line); margin:18px 0}
 
+/* -----------------------
+   CITY GRID
+----------------------- */
 .city-grid{
   list-style:none;
   padding:0;
@@ -396,7 +440,7 @@ hr{border:0; border-top:1px solid var(--line); margin:18px 0}
   background:#fff;
   border:1px solid var(--line);
   border-radius:14px;
-  padding:12px 12px;
+  padding:12px;
   font-weight:800;
   font-size:14px;
   box-shadow:0 10px 24px rgba(17,24,39,0.05);
@@ -406,9 +450,12 @@ hr{border:0; border-top:1px solid var(--line); margin:18px 0}
   box-shadow:0 14px 28px rgba(17,24,39,0.08);
 }
 
+/* -----------------------
+   CALLOUT
+----------------------- */
 .callout{
   margin:16px 0 12px;
-  padding:14px 14px;
+  padding:14px;
   border-radius:14px;
   border:1px solid rgba(22,163,74,0.22);
   background:linear-gradient(180deg, rgba(22,163,74,0.08), rgba(22,163,74,0.03));
@@ -418,47 +465,24 @@ hr{border:0; border-top:1px solid var(--line); margin:18px 0}
   align-items:center;
   gap:10px;
   font-weight:900;
-  letter-spacing:-0.01em;
-  margin:0 0 6px;
 }
 .badge{
-  display:inline-block;
   padding:3px 10px;
   border-radius:999px;
   background:rgba(22,163,74,0.14);
   border:1px solid rgba(22,163,74,0.22);
-  color:var(--ink);
   font-size:12px;
   font-weight:900;
 }
-.callout p{margin:0; color:var(--muted); font-size:13px}
-
-footer{
-  border-top:1px solid var(--line);
-  background:#fbfbfa;
-}
-.footer-inner{
-  max-width:var(--max);
-  margin:0 auto;
-  padding:28px 18px;
-  display:grid;
-  gap:10px;
-  text-align:left;
-}
-.footer-inner h2{margin:0; font-size:18px}
-.footer-links{display:flex; gap:12px; flex-wrap:wrap}
-.footer-links a{color:var(--muted); text-decoration:none; font-size:13px; padding:6px 0}
-.small{color:var(--muted); font-size:12px; margin-top:8px}
-
 
 /* -----------------------
-   CONTACT (Networx embed)
+   CONTACT FORM
 ----------------------- */
 .form-grid{
   margin-top:14px;
   display:grid;
   gap:14px;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns:1fr 320px;
   align-items:start;
 }
 @media (max-width: 900px){
@@ -468,7 +492,7 @@ footer{
 .embed-card{
   border:1px solid var(--line);
   border-radius:14px;
-  padding:14px;
+  padding:18px;
   background:var(--soft);
 }
 
@@ -477,18 +501,29 @@ footer{
   justify-content:center;
 }
 
+/* Responsive Networx sizing */
 #nx_form{
-  max-width:100%;
+  width:min(100%, 520px);
+  min-height:520px;
 }
 
-/* Slight scale-down for small phones */
-@media (max-width: 420px){
+/* Force iframe to fill container */
+#networx_form_container iframe{
+  width:100% !important;
+  height:100% !important;
+  border:0 !important;
+}
+
+@media (min-width: 900px){
   #nx_form{
-    transform: scale(0.92);
-    transform-origin: top center;
+    width:min(100%, 620px);
+    min-height:560px;
   }
 }
 
+/* -----------------------
+   WHY BOX
+----------------------- */
 .why-box{
   background:#fff;
   border:1px solid var(--line);
@@ -499,12 +534,11 @@ footer{
 .why-box h3{
   margin:0 0 10px;
   font-size:15px;
-  letter-spacing:-0.01em;
 }
 .why-list{
-  margin:0;
-  padding:0;
   list-style:none;
+  padding:0;
+  margin:0;
   display:grid;
   gap:10px;
 }
@@ -524,18 +558,43 @@ footer{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  flex:0 0 auto;
-  margin-top:1px;
 }
 .tick:before{
   content:"✓";
   font-weight:900;
-  color:var(--ink);
   font-size:12px;
-  line-height:1;
 }
 
+/* -----------------------
+   FOOTER
+----------------------- */
+footer{
+  border-top:1px solid var(--line);
+  background:#fbfbfa;
+}
+.footer-inner{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:28px 18px;
+  display:grid;
+  gap:10px;
+}
+.footer-links{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.footer-links a{
+  color:var(--muted);
+  text-decoration:none;
+  font-size:13px;
+}
+.small{
+  color:var(--muted);
+  font-size:12px;
+}
 """.strip()
+
 
 
 # -----------------------
@@ -603,15 +662,21 @@ def contact_header_block(*, h1: str, sub: str) -> str:
 """.rstrip()
 
 
-def footer_block() -> str:
-    return f"""
-<footer>
-  <div class="footer-inner">
+def footer_block(*, show_cta: bool = True) -> str:
+    cta_html = ""
+    if show_cta:
+        cta_html = f"""
     <h2>Next steps</h2>
     <p class="sub">Ready to move forward? Request a free quote.</p>
     <div>
       <a class="btn" href="{esc(CONFIG.cta_href)}">{esc(CONFIG.cta_text)}</a>
     </div>
+"""
+
+    return f"""
+<footer>
+  <div class="footer-inner">
+    {cta_html}
     <div class="footer-links">
       <a href="/">Home</a>
       <a href="/cost/">Cost</a>
@@ -623,7 +688,8 @@ def footer_block() -> str:
 """.rstrip()
 
 
-def page_shell(*, h1: str, sub: str, inner_html: str, show_image: bool = True) -> str:
+
+def page_shell(*, h1: str, sub: str, inner_html: str, show_image: bool = True, show_footer_cta: bool = True) -> str:
     img_src = f"/{CONFIG.image_filename}"
     img_html = ""
     if show_image:
@@ -643,7 +709,7 @@ def page_shell(*, h1: str, sub: str, inner_html: str, show_image: bool = True) -
   </section>
 </main>
 """
-        + footer_block()
+        + footer_block(show_cta=show_footer_cta)
     ).rstrip()
 
 
@@ -713,14 +779,14 @@ def city_cost_callout_html(city: str, state: str) -> str:
 # -----------------------
 # PAGE FACTORY
 # -----------------------
-def make_page(*, h1: str, canonical: str, nav_key: str, sub: str, inner: str, show_image: bool = True) -> str:
+def make_page(*, h1: str, canonical: str, nav_key: str, sub: str, inner: str, show_image: bool = True, show_footer_cta: bool = True) -> str:
     h1 = clamp_title(h1, 70)
     title = h1  # enforce title == h1
     return base_html(
         title=title,
         canonical_path=canonical,
         current_nav=nav_key,
-        body=page_shell(h1=h1, sub=sub, inner_html=inner, show_image=show_image),
+        body=page_shell(h1=h1, sub=sub, inner_html=inner, show_image=show_image, show_footer_cta=show_footer_cta),
     )
 
 
@@ -776,10 +842,13 @@ def contact_page_html() -> str:
     # ✅ Paste your Networx embed EXACTLY here.
     # (This is the snippet style from your screenshot.)
     networx_embed = """
-<div id="networx_form_container" style="margin:0px;padding:0px;">
-    <div id = "nx_form" style = "width: 242px; height: 375px;">
-        <script type="text/javascript" src = "https://api.networx.com/iframe.php?aff_id=73601bc3bd5a961a61a973e92e29f169&aff_to_form_id=7994"></script>
-    </div>
+<div id="networx_form_container">
+  <div id="nx_form">
+    <script
+      type="text/javascript"
+      src="https://api.networx.com/iframe.php?aff_id=73601bc3bd5a961a61a973e92e29f169&aff_to_form_id=7994">
+    </script>
+  </div>
 </div>
 """.strip()
 
@@ -807,7 +876,8 @@ def contact_page_html() -> str:
         nav_key="contact",
         sub=sub,
         inner=inner,
-        show_image=False
+        show_image=False,
+        show_footer_cta=False
     )
 
 
