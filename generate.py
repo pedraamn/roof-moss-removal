@@ -862,7 +862,7 @@ def contact_page_html() -> str:
     # (This is the snippet style from your screenshot.)
     networx_embed = """
 <div id="networx_form_container" style="margin:0px;padding:0px;">
-    <div id = "nx_form" style = "width: 242px; height: 375px;">
+    <div id = "nx_form">
         <script type="text/javascript" src = "https://api.networx.com/iframe.php?aff_id=73601bc3bd5a961a61a973e92e29f169&aff_to_form_id=7994"></script>
     </div>
 </div>
