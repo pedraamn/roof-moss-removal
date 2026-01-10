@@ -515,18 +515,6 @@ hr{border:0; border-top:1px solid var(--line); margin:18px 0}
   border:0 !important;
 }
 
-/* Desktop: fill the left column + fluid height; stop centering */
-@media (min-width: 900px){
-  .nx-center{
-    justify-content:flex-start;
-  }
-
-  #nx_form{
-    width:100%;
-    max-width:900px;
-    min-height:clamp(560px, 60vh, 820px);
-  }
-}
 
 /* -----------------------
    WHY BOX
